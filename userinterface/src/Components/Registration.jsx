@@ -29,16 +29,20 @@ class Registration extends Component {
     }
     console.log("-->", registerDetails);
 
-    var bodyFormData = new FormData();
+    var bodyFormData = {};
 
-    bodyFormData.set("name", registerDetails["fullname"]);
-    bodyFormData.set("email", registerDetails["useremail"]);
-    bodyFormData.set("password", registerDetails["userpassword"]);
-    bodyFormData.set("contact", registerDetails["mobilenumber"]);
+    bodyFormData["name"] = registerDetails["fullname"];
+    bodyFormData["emailId"] = registerDetails["useremail"];
+    bodyFormData["password"] = registerDetails["userpassword"];
+    bodyFormData["contact"] = registerDetails["mobilenumber"];
 
     axios
       .post("http://localhost:8080/register", bodyFormData, {
-        headers: { "Access-Control-Allow-Origin": "*", crossDomain: true }
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          crossDomain: true
+        }
       })
       .then(function(res) {
         console.log(res);

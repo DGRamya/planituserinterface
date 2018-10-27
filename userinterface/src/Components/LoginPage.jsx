@@ -26,18 +26,26 @@ class LoginPage extends Component {
     }
     console.log("-->", formData);
 
-    // axios
-    //   .post("http://localhost:8080/userLogin", user, {
-    //     headers: { crossDomain: true }
-    //   })
-    //   .then(function(res) {
-    //     console.log(res);
-    //     //Route to welcome page
-    //   })
-    //   .catch(function(err) {
-    //     alert("Inavlid credentials");
-    //     console.log(err);
-    //   });
+    var loginData = {};
+    loginData["email"] = formData["useremail"];
+    loginData["password"] = formData["userpassword"];
+
+    axios
+      .post("http://localhost:8080/login", loginData, {
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          crossDomain: true
+        }
+      })
+      .then(function(res) {
+        console.log(res);
+        //Route to welcome page
+      })
+      .catch(function(err) {
+        alert("Invalid credentials");
+        console.log(err);
+      });
     event.target.reset();
   };
 
