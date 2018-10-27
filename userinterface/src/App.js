@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 
 import "./App.css";
+import LoginPage from "./Components/LoginPage";
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <h2>hi</h2>
+        <LoginPage />
       </div>
     );
   }
