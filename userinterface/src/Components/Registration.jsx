@@ -23,24 +23,31 @@ class Registration extends Component {
   handleSubmit = event => {
     event.preventDefault();
 
-    const formData = {};
+    const registerDetails = {};
     for (const field in this.refs) {
-      formData[field] = this.refs[field].value;
+      registerDetails[field] = this.refs[field].value;
     }
-    console.log("-->", formData);
+    console.log("-->", registerDetails);
 
-    // axios
-    //   .post("http://localhost:8080/userLogin", user, {
-    //     headers: { crossDomain: true }
-    //   })
-    //   .then(function(res) {
-    //     console.log(res);
-    //     //Route to welcome page
-    //   })
-    //   .catch(function(err) {
-    //     alert("Inavlid credentials");
-    //     console.log(err);
-    //   });
+    var bodyFormData = new FormData();
+
+    bodyFormData.set("name", registerDetails["fullname"]);
+    bodyFormData.set("email", registerDetails["useremail"]);
+    bodyFormData.set("password", registerDetails["userpassword"]);
+    bodyFormData.set("contact", registerDetails["mobilenumber"]);
+
+    axios
+      .post("http://localhost:8080/register", bodyFormData, {
+        headers: { "Access-Control-Allow-Origin": "*", crossDomain: true }
+      })
+      .then(function(res) {
+        console.log(res);
+        //Route to welcome page
+      })
+      .catch(function(err) {
+        alert("Invalid credentials");
+        console.log(err);
+      });
     event.target.reset();
   };
 
@@ -56,7 +63,7 @@ class Registration extends Component {
                 type="text"
                 required
                 className="form-control"
-                ref="username"
+                ref="fullname"
               />
             </div>
           </div>
