@@ -46,7 +46,7 @@ class Registration extends Component {
       })
       .then(function(res) {
         console.log(res);
-        //Route to welcome page
+        alert("Registration successful!");
       })
       .catch(function(err) {
         alert("Invalid credentials");
