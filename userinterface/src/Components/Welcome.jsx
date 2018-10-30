@@ -17,7 +17,7 @@ const imgStyle = {
   height: "40%",
   align: "left"
 };
-const fontStyle = {
+const fontStyle = {    
   fontFamily: "Comic Sans MS",
   color: "white",
   fontWeight: "bold",
