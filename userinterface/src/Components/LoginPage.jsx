@@ -1,16 +1,36 @@
 import React, { Component } from "react";
 
 import axios from "axios";
+import logo from "./eventPlanning.jpg";
 
 const formStyle = {
   paddingLeft: "300px",
   paddingTop: "20px"
 };
 
-const welcome = {
-  align: "center",
+const welcomeStyle = {
+  color: "blue",
   fontSize: "35px"
 };
+
+const bgStyle = {
+  height: "100%",
+  width: "100%",
+  position: "absolute"
+};
+const divStyle = {
+  paddingTop: "40px",
+  height: "100%",
+  width: "100%",
+  backgroundColor: "#F17070",
+  display: "inline-block"
+};
+const imgStyle = {
+  height: "70%",
+  width: "75%",
+  align: "center"
+};
+
 class LoginPage extends Component {
   constructor(props) {
     super(props);
@@ -100,8 +120,8 @@ class LoginPage extends Component {
             </form>
           </div>
         ) : (
-          <div style={welcome}>
-            <p> Welcome </p>
+          <div className="welcome" style={{ backgroundColor: "white" }}>
+            <img src={logo} style={imgStyle} />
           </div>
         )}
       </div>
