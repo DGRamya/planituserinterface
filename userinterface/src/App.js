@@ -4,6 +4,7 @@ import "./App.css";
 import LoginPage from "./Components/LoginPage";
 import Registration from "./Components/Registration";
 import Welcome from "./Components/Welcome";
+import Event from "./Components/Event";
 import { BrowserRouter, Route } from "react-router-dom";
 
 class App extends Component {
@@ -11,6 +12,15 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div>
+          <Route
+            exact={true}
+            path="/event"
+            render={() => (
+              <div className="App">
+                <Event />
+              </div>
+            )}
+          />
           <Route
             exact={true}
             path="/"
