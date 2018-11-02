@@ -51,6 +51,8 @@ class LoginPage extends Component {
       formData[field] = this.refs[field].value;
     }
 
+    console.log("formData :: ",formData);
+
     var loginData = {};
     loginData["email"] = formData["useremail"];
     loginData["password"] = formData["userpassword"];

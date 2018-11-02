@@ -1,0 +1,27 @@
+.container {
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  
+  height: 70px; 
+}
+
+.flexItem{
+  margin: 20px;
+  display: inline-block;
+  flex-basis: 100px;
+  height: 50px;
+}
+
+.divStyle{
+	background-color: "tomato";
+}
+
+.textStyle{
+	overflow-y: scroll;
+	height: 50px;
+}
+
+form button.smallButton{
+	background-color: #999;
+}
