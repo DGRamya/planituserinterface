@@ -1,2 +1,2 @@
-# planituserinterface
-This is an Event planning website.
+
+This is an event planning website.
