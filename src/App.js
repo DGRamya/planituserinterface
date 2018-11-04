@@ -14,15 +14,6 @@ class App extends Component {
         <div>
           <Route
             exact={true}
-            path="/event"
-            render={() => (
-              <div className="App">
-                <Event />
-              </div>
-            )}
-          />
-          <Route
-            exact={true}
             path="/"
             render={() => (
               <div className="App">

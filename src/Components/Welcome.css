@@ -1,0 +1,26 @@
+.bgStyle{
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.divStyle{
+  padding-top: 40px;
+  height: 100%;
+  width: 100%;
+  background-color: #F17070;
+  display: inline-block;
+}
+
+.imgStyle{
+  height: 40%;
+  align-self: left;
+}
+
+.fontStyle{    
+  font-family: Comic Sans MS;
+  color: white;
+  font-weight: bold;
+  font-style: oblique;
+  font-size: 30px;
+}
