@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import MyEvents from "./MyEvents";
 
 import axios from "axios";
 import logo from "./eventPlanning.jpg";
@@ -56,7 +57,7 @@ class LoginPage extends Component {
     var loginData = {};
     loginData["email"] = formData["useremail"];
     loginData["password"] = formData["userpassword"];
-
+    
     axios
       .post("http://localhost:8080/login", loginData, {
         headers: {
@@ -64,6 +65,7 @@ class LoginPage extends Component {
           "Access-Control-Allow-Origin": "*",
           crossDomain: true
         }
+        
       })
       .then(
         function(res) {
@@ -122,9 +124,7 @@ class LoginPage extends Component {
             </form>
           </div>
         ) : (
-          <div className="welcome" style={{ backgroundColor: "white" }}>
-            <img src={logo} style={imgStyle} />
-          </div>
+          <MyEvents />
         )}
       </div>
     );

@@ -1,49 +1,26 @@
 import React, { Component } from "react";
 import logo from "../images/logo.png";
-
-const bgStyle = {
-  height: "100%",
-  width: "100%",
-  position: "absolute"
-};
-const divStyle = {
-  paddingTop: "40px",
-  height: "100%",
-  width: "100%",
-  backgroundColor: "#F17070",
-  display: "inline-block"
-};
-const imgStyle = {
-  height: "40%",
-  align: "left"
-};
-const fontStyle = {    
-  fontFamily: "Comic Sans MS",
-  color: "white",
-  fontWeight: "bold",
-  fontStyle: "oblique",
-  fontSize: "30px"
-};
+import './Welcome.css';
 
 class Welcome extends Component {
   render() {
     return (
-      <div className="WelcomePage " style={bgStyle}>
+      <div className="bgStyle">
         <div style={{ backgroundColor: "white" }}>
-          <img src={logo} style={imgStyle} />
+          <img src={logo} className="imgStyle" />
         </div>
-        <div style={divStyle}>
-          <p style={fontStyle}>
+        <div className="divStyle">
+          <p className="fontStyle">
             {" "}
             Welcome, <br /> Please register or login to start planning your
             event
           </p>{" "}
           <br />
-          <a href="/login" className="buttonLogin" style={fontStyle}>
+          <a href="/login" className="buttonLogin" className="fontStyle">
             <u>Login</u>
           </a>
           &nbsp;&nbsp;&nbsp;&nbsp;
-          <a href="/registration" className="buttonReg" style={fontStyle}>
+          <a href="/registration" className="buttonReg" className="fontStyle">
             <u>Registration</u>
           </a>
         </div>

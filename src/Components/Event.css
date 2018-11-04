@@ -1,27 +1,58 @@
-.container {
+.container{
   display: inline-flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  
-  height: 70px; 
+  justify-content: flex-start;
+  align-items: center;
 }
 
-.flexItem{
-  margin: 20px;
+.nestedContainer{
+  display: flex;
+  flex-direction: column; 
+}
+
+.itemStyle{
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+ }
+
+.item{
   display: inline-block;
-  flex-basis: 100px;
-  height: 50px;
 }
 
-.divStyle{
-	background-color: "tomato";
+.child{
+  display: inline-block;
+  margin-right: 20px;
+  margin-top: 30px;
 }
 
-.textStyle{
-	overflow-y: scroll;
-	height: 50px;
+.small {
+  display: inline-block;
+  width: auto;
+  background-color: #777;
+  font-size: 14px;
 }
 
-form button.smallButton{
-	background-color: #999;
+.headerContainer{
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+  justify-content: space-between;
+}
+
+.header{
+  color: #F17070;
+  text-align: left;
+  padding-left: 20px;
+  font-weight: bold;
+  font-size: 40px;
+}
+
+.submitButton{
+  width: 150px;
+  display: inline-block;
+  margin-right: 20px;
+  margin-top: 30px;
 }

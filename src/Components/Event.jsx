@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
+import axios from "axios";
 import 'react-day-picker/lib/style.css';
 import './Event.css';
 
@@ -12,7 +13,7 @@ class Event extends Component {
     this.state = {
       eventname: "",
       eventvenue: "",
-      selectedDay: undefined,
+      eventDate: '',
       todoname: '',
       todolist: [{ todoname: '' }],
       guestemail: '',
@@ -20,51 +21,79 @@ class Event extends Component {
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleDaySelect = this.handleDaySelect.bind(this);
+    this.handleDateChange = this.handleDateChange.bind(this);
   }
 
   handleSubmit = event => {
     event.preventDefault();
     const eventDetails = {};
     for (const field in this.refs) {
+      console.log(field);
       eventDetails[field] = this.refs[field].value;
     }
-    console.log("-->", eventDetails['todolist']);
+    
+    var eventData = {};
+
+    eventData["eventname"] = eventDetails["eventname"];
+    eventData["eventvenue"] = eventDetails["eventvenue"];
+    eventData["todolist"] = this.state.todolist;
+    eventData["guestlist"] = this.state.guestlist;
+
+    axios
+      .post("http://localhost:8080/event", eventData, {
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          crossDomain: true
+        }
+      })
+      .then(function(res) {
+        console.log(res);
+        alert("Event Added successful!");
+      })
+      .catch(function(err) {
+        alert("Error in Event creation!");
+        console.log(err);
+      });
+    event.target.reset();
+
   };
 
-  handleDaySelect(day) {
-    this.setState({ selectedDay: day });
+  handleDateChange(date) {
+    this.setState({
+      eventDate: date
+    });
   }
 
-  handleRemovetodoitem = (idx) => () => {
-    this.setState({ todolist: this.state.todolist.filter((s, sidx) => idx !== sidx) });
+  handleRemovetodoitem = (idToDo) => () => {
+    this.setState({ todolist: this.state.todolist.filter((s, sidToDo) => idToDo !== sidToDo) });
   }
 
   handleAddtodoitem = () => {
-    this.setState({ todolist: this.state.todolist.concat([{ name: '' }]) });
+    this.setState({ todolist: this.state.todolist.concat([{ todoname: '' }]) });
   }
 
-  handleToDoChange = (idx) => (evt) => {
-    const newToDo = this.state.todolist.map((todoitem, sidx) => {
-      if (idx !== sidx) return todoitem;
-      return { ...todoitem, name: evt.target.value };
+  handleToDoChange = (idToDo) => (evt) => {
+    const newToDo = this.state.todolist.map((todoitem, sidToDo) => {
+      if (idToDo !== sidToDo) return todoitem;
+      return { ...todoitem, todoname: evt.target.value };
     });
     
     this.setState({ todolist: newToDo });
   }
 
 
- handleRemoveguest = (idx) => () => {
-    this.setState({ guestlist: this.state.guestlist.filter((s, sidx) => idx !== sidx) });
+ handleRemoveguest = (guestId) => () => {
+    this.setState({ guestlist: this.state.guestlist.filter((s, sguestId) => guestId !== sguestId) });
   }
 
   handleAddguest = () => {
     this.setState({ guestlist: this.state.guestlist.concat([{ guestemail: '' }]) });
   }
 
-  handleGuestChange = (idx) => (evt) => {
-    const newGuest = this.state.guestlist.map((guest, sidx) => {
-      if (idx !== sidx) return guest;
+  handleGuestChange = (guestId) => (evt) => {
+    const newGuest = this.state.guestlist.map((guest, sguestId) => {
+      if (guestId !== sguestId) return guest;
       return { ...guest, guestemail: evt.target.value };
     });
     
@@ -75,95 +104,115 @@ class Event extends Component {
   render() {
     const { selectedDay } = this.state;
     return (
-      <div>
+      <div style={{ backgroundColor: "white" }}>
+
+         <div className="headerContainer">
+              <div className="header">
+                <label> Create Events </label>
+              </div>
+         </div>
+
         <form onSubmit={this.handleSubmit}>
 
           <div className="container">
-            <div className="flexItem" >
+              <div className="child">
               <label>Event Name</label>
-            </div>
-            <div className="flexItem" >
-              <input
+              </div>
+              <div className="child">
+              <input  
                 type="text"
                 required
                 ref="eventname"
               />
+              </div>
+          </div>
+
+          <div className="container">
+            <div className="child">
+            <label>Event Venue</label>
+            </div>
+            <div className="child">
+            <input
+              type="text"
+              required
+              ref="eventvenue"
+            />
             </div>
           </div>
 
           <div className="container">
-            <div className="flexItem" >
-              <label>Event Venue</label>
+            <div className="child">
+            <label>Date</label>
             </div>
-            <div className="flexItem" >
-              <input
-                type="text"
-                required
-                ref="eventvenue"
-              />
-            </div>
-          </div>
-
-          <div className="container">
-            <div className="flexItem" >
-              <label>Date</label>
-            </div>
-            <div className="flexItem">
-              <DayPickerInput onDayChange={this.handleDayChange} />
+            <div className="child">
+            <DayPickerInput onDayChange={this.handleDateChange} />
             </div>
           </div> 
 
           <div className="container">
-            <div className="flexItem" >
+              <div className="child">
               <label>To Do List</label>
-            </div>
-            <div className="flexItem" >
-              {this.state.todolist.map((todoitem, idx) => (
-                  <div className="container" >
+              </div>
+          </div>  
+          <div className="container">  
+              <div className="nestedContainer">
+              {this.state.todolist.map((todoitem, idToDo) => (
+                    <div className="itemStyle">
+                    <div className="item">
                     <input
                       type="text"
                       ref="todoitem"
-                      placeholder={`todoitem #${idx + 1} todoname`}
+                      placeholder={`todoitem #${idToDo + 1} todoname`}
                       value={todoitem.todoname}
-                      onChange={this.handleToDoChange(idx)}
+                      onChange={this.handleToDoChange(idToDo)}
                     />
-                    <button type="button" className="smallButton" onClick={this.handleRemovetodoitem(idx)}>-</button>
-                  </div>
+                    </div>
+                    <div>
+                    <button type="button" className="small" onClick={this.handleRemovetodoitem(idToDo)}>-</button>
+                    </div>
+                    </div>   
               ))}
+              </div>
             </div>
-            <div className="flexItem">
-             <button type="button" className="smallButton" onClick={this.handleAddtodoitem}>Add ToDo</button>
-            </div> 
+          <div className="container">    
+              <div className="child">
+              <button type="button" className="small" onClick={this.handleAddtodoitem}>Add ToDo</button>
+              </div>
           </div>
 
 
           <div className="container">
-            <div className="flexItem" >
+              <div className="child">
               <label>Guest List</label>
-            </div>
-            <div className="flexItem" >
-              {this.state.guestlist.map((guest, idx) => (
-                  <div className="container" >
+              </div>
+          </div>
+          <div className="container">
+              <div className="nestedContainer">
+              {this.state.guestlist.map((guest, guestId) => (
+                  <div className="itemStyle">
                     <input
                       type="text"
                       ref="guest"
-                      placeholder={`guest #${idx + 1} guestemail`}
+                      placeholder={`guest #${guestId + 1} guestemail`}
                       value={guest.guestemail}
-                      onChange={this.handleGuestChange(idx)}
+                      onChange={this.handleGuestChange(guestId)}
                     />
-                    <button type="button" className="smallButton" onClick={this.handleRemoveguest(idx)}>-</button>
+                    <button type="button" className="small" onClick={this.handleRemoveguest(guestId)}>-</button>
                   </div>
               ))}
-            </div>
-            <div className="flexItem">
-              <button type="button" className="smallButton" onClick={this.handleAddguest}>Add Guest</button>
-            </div>
+              </div>
+          </div>  
+
+          <div className="container">    
+              <div className="child">
+                <button type="button" className="small" onClick={this.handleAddguest}>Add Guest</button>
+              </div>
           </div>
 
-          <div className="container">
-            <div className="flexItem">
+          <div className="container">    
+              <div className="submitButton">
               <button>Submit</button>
-            </div>
+              </div>
           </div>
 
         </form>
