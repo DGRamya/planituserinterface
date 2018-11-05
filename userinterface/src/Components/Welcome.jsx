@@ -4,7 +4,7 @@ import logo from "../images/logo.png";
 const bgStyle = {
   height: "100%",
   width: "100%",
-  position: "absolute"
+  position: "absolute",
 };
 const divStyle = {
   paddingTop: "40px",
@@ -14,14 +14,14 @@ const divStyle = {
   display: "inline-block"
 };
 const imgStyle = {
+  paddingTop: "7%",
   height: "40%",
   align: "left"
 };
-const fontStyle = {    
-  fontFamily: "Comic Sans MS",
+const fontStyle = {
+  fontFamily: "Segoe UI",
   color: "white",
   fontWeight: "bold",
-  fontStyle: "oblique",
   fontSize: "30px"
 };
 
@@ -38,14 +38,6 @@ class Welcome extends Component {
             Welcome, <br /> Please register or login to start planning your
             event
           </p>{" "}
-          <br />
-          <a href="/login" className="buttonLogin" style={fontStyle}>
-            <u>Login</u>
-          </a>
-          &nbsp;&nbsp;&nbsp;&nbsp;
-          <a href="/registration" className="buttonReg" style={fontStyle}>
-            <u>Registration</u>
-          </a>
         </div>
       </div>
     );

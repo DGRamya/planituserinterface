@@ -8,7 +8,6 @@ import Welcome from "./Components/Welcome";
 import Event from "./Components/Event";
 import About from "./Components/About";
 import Home from "./Components/Home";
-import Footer from "./Components/Footer";
 
 import { BrowserRouter, Route } from "react-router-dom";
 
@@ -67,8 +66,6 @@ class App extends Component {
               </div>
             )}
           />
-          <Footer/>
-
         </div>
       </BrowserRouter>
     );
