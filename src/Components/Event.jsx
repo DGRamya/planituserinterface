@@ -135,15 +135,15 @@ class Event extends Component {
               <DayPickerInput onDayChange={this.handleDateChange} />
             </div>
           </div>
-          <br /><br />
 
-           <div className="container">
+
+          <div className="container">
              <div className="child">
              <label >To Do List</label>
              </div>
-          </div>   
-          <div className="container">  
-              <div className="nestedContainer">
+          </div>
+           <div className="container">  
+            <div className="nestedContainer">
             {this.state.todolist.map((todo, idx) => (
               <div className="itemStyle">
                 <div className="item">
@@ -163,24 +163,25 @@ class Event extends Component {
                   -
                 </button>
               </div>
-              </div>  
+              </div> 
             ))}
-             </div>
+            </div>
             </div>
             <div className="container">    
-              <div className="child">
-              <button
+            <div className="child">
+            <button
               type="button"
               onClick={this.handleAddToDoList}
               className="small"
-              >
+            >
               Add Item
-              </button>
-              </div>
-             </div> 
+            </button>
+          </div>
+          </div> 
 
 
-            <div className="container">
+
+          <div className="container">
              <div className="child">
               <label >Guest List</label>
              </div>
@@ -211,7 +212,7 @@ class Event extends Component {
             </div>
             </div>
             <div className="container">    
-              <div className="child">
+            <div className="child">
             <button
               type="button"
               onClick={this.handleAddGuest}

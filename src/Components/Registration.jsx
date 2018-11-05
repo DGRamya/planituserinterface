@@ -6,6 +6,11 @@ const formStyle = {
   paddingLeft: "300px",
   paddingTop: "20px"
 };
+
+const pageStyle = {
+  paddingTop: "5%"
+};
+
 class Registration extends Component {
   constructor(props) {
     super(props);
@@ -57,12 +62,12 @@ class Registration extends Component {
 
   render() {
     return (
-      <div className="container">
-        <h2>User Registration</h2>
+      <div className="container" style={pageStyle}>
         <form onSubmit={this.handleSubmit} style={formStyle}>
+        <h2>User Registration</h2><br/>
           <div className="form-group row">
-            <label className="col-sm-2">Full Name</label>
-            <div className="col-sm-4 float-sm-left">
+            <label className="col-sm-4">Full Name</label>
+            <div className="col-sm-8 float-sm-left">
               <input
                 type="text"
                 required
@@ -72,45 +77,45 @@ class Registration extends Component {
             </div>
           </div>
           <div className="form-group row">
-            <label className="col-sm-2">Email</label>
-            <div className="col-sm-4 float-sm-left">
+            <label className="col-sm-4">Email</label>
+            <div className="col-sm-8 float-sm-left">
               <input
                 type="email"
                 required
-                className="user-email"
+                className="user-email form-control"
                 ref="useremail"
               />
             </div>
           </div>
           <div className="form-group row">
-            <label className="col-sm-2">Password</label>
-            <div className="col-sm-4 float-sm-left">
+            <label className="col-sm-4">Password</label>
+            <div className="col-sm-8 float-sm-left">
               <input
                 type="password"
                 required
-                className="current-passwrod"
+                className="current-passwrod form-control"
                 ref="userpassword"
               />
             </div>
           </div>
           <div className="form-group row">
-            <label className="col-sm-2">Confirm Password</label>
-            <div className="col-sm-4 float-sm-left">
+            <label className="col-sm-4">Confirm Password</label>
+            <div className="col-sm-8 float-sm-left">
               <input
                 type="password"
                 required
-                className="confirm-password"
+                className="confirm-password form-control"
                 ref="confirmpassword"
               />
             </div>
           </div>
           <div className="form-group row">
-            <label className="col-sm-2">Mobile Number </label>
-            <div className="col-sm-4 float-sm-left">
+            <label className="col-sm-4">Mobile Number </label>
+            <div className="col-sm-8 float-sm-left">
               <input
                 type="tel"
                 required
-                className="mobile-number"
+                className="mobile-number form-control"
                 ref="mobilenumber"
               />
             </div>

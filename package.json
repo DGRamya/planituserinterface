@@ -1,9 +1,13 @@
 {
-  "name": "userinterface",
+  "name": "planituserinterface",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/runtime": "^7.1.2",
+    "@material-ui/core": "^3.3.2",
+    "@material-ui/icons": "^3.0.1",
     "axios": "^0.18.0",
+    "material-ui": "^1.0.0-beta.47",
     "moment": "^2.22.2",
     "react": "^16.6.0",
     "react-bootstrap": "^0.32.4",
@@ -27,5 +31,20 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "@babel/plugin-transform-object-set-prototype-of-to-assign": "^7.0.0"
+  },
+  "description": "This is an event planning website.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DGRamya/planituserinterface.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DGRamya/planituserinterface/issues"
+  },
+  "homepage": "https://github.com/DGRamya/planituserinterface#readme"
 }

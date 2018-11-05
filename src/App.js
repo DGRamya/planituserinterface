@@ -1,10 +1,14 @@
 import React, { Component } from "react";
 
 import "./App.css";
+import Header from "./Components/Header";
 import LoginPage from "./Components/LoginPage";
 import Registration from "./Components/Registration";
 import Welcome from "./Components/Welcome";
 import Event from "./Components/Event";
+import About from "./Components/About";
+import Home from "./Components/Home";
+
 import { BrowserRouter, Route } from "react-router-dom";
 
 class App extends Component {
@@ -12,6 +16,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div>
+        <Header/>
           <Route
             exact={true}
             path="/"
@@ -22,7 +27,30 @@ class App extends Component {
             )}
           />
           <Route
-            exact={true}
+            path="/home"
+            render={() => (
+              <div className="App">
+                <Home />
+              </div>
+            )}
+          />
+          <Route
+            path="/event"
+            render={() => (
+              <div className="App">
+                <Event />
+              </div>
+            )}
+          />
+          <Route
+            path="/about"
+            render={() => (
+              <div className="App">
+                <About />
+              </div>
+            )}
+          />
+          <Route
             path="/registration"
             render={() => (
               <div className="App">
@@ -31,20 +59,10 @@ class App extends Component {
             )}
           />
           <Route
-            exact={true}
             path="/login"
             render={() => (
               <div className="App">
                 <LoginPage />
-              </div>
-            )}
-          />
-          <Route
-            exact={true}
-            path="/event"
-            render={() => (
-              <div className="App">
-                <Event />
               </div>
             )}
           />
