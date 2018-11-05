@@ -66,6 +66,15 @@ class App extends Component {
               </div>
             )}
           />
+          <Route
+            exact={true}
+            path="/event"
+            render={() => (
+              <div className="App">
+                <Event />
+              </div>
+            )}
+          />
         </div>
       </BrowserRouter>
     );
