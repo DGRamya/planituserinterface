@@ -1,0 +1,40 @@
+
+.imgStyle{
+  height: "40%";
+  align: "left";
+}
+.headerContainer{
+	display: flex;
+	flex-direction: row;
+	background-color: white;
+	justify-content: space-between;
+}
+
+.header{
+	color: #F17070;
+	text-align: left;
+	padding-left: 20px;
+	font-weight: bold;
+	font-size: 40px;
+}
+
+.link{
+	display: inline-block;
+	color: #F17070;
+	padding-right: 20px;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.buttonContainer{
+	display: flex;
+	flex-direction: row;
+  	justify-content: flex-end;
+}
+
+.smallButton {
+  display: inline-block;
+  width: inherit;
+  padding: 0 20px;
+  font-size: 14px;
+}
