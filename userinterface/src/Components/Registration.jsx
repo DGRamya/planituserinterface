@@ -6,6 +6,11 @@ const formStyle = {
   paddingLeft: "300px",
   paddingTop: "20px"
 };
+
+const pageStyle = {
+  paddingTop: "5%"
+};
+
 class Registration extends Component {
   constructor(props) {
     super(props);
@@ -57,7 +62,7 @@ class Registration extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container" style={pageStyle}>
         <h2>User Registration</h2>
         <form onSubmit={this.handleSubmit} style={formStyle}>
           <div className="form-group row">

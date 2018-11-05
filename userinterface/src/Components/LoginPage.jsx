@@ -8,6 +8,10 @@ const formStyle = {
   paddingTop: "20px"
 };
 
+const pageStyle = {
+  paddingTop: "5%"
+};
+
 const welcomeStyle = {
   color: "blue",
   fontSize: "35px"
@@ -81,7 +85,7 @@ class LoginPage extends Component {
     return (
       <div>
         {!isSubmitted ? (
-          <div className="container">
+          <div className="container" style={pageStyle}>
             <h2>User Login</h2>
             <form onSubmit={this.handleSubmit} style={formStyle}>
               <div className="form-group row">
