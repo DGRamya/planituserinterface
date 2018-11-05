@@ -136,15 +136,24 @@ class Event extends Component {
             </div>
           </div>
 
-          <div class="form-group row">
+          <div className="container">
+             <div className="child">
+             <label >To Do List</label>
+             </div>
+          </div>
+           <div className="container">  
+            <div className="nestedContainer">
             {this.state.todolist.map((todo, idx) => (
-              <div className="todoList" class="col-sm-8 add-input">
+              <div className="itemStyle">
+                <div className="item">
                 <input
                   type="text"
                   placeholder={`TodoList #${idx + 1} name`}
                   value={todo}
                   onChange={this.handleToDoListChange(idx)}
                 />
+                </div>
+                <div>
                 <button
                   type="button"
                   onClick={this.handleRemoveToDoList(idx)}
@@ -153,26 +162,42 @@ class Event extends Component {
                   -
                 </button>
               </div>
+              </div> 
             ))}
-
+            </div>
+            </div>
+            <div className="container">    
+            <div className="child">
             <button
               type="button"
               onClick={this.handleAddToDoList}
               className="small"
-              class="col-sm-2 float-left"
             >
               Add Item
             </button>
           </div>
-          <div class="form-group row">
+          </div> 
+
+
+
+          <div className="container">
+             <div className="child">
+              <label >Guest List</label>
+             </div>
+            </div> 
+            <div className="container">  
+            <div className="nestedContainer">
             {this.state.guestlist.map((guest, idx) => (
-              <div className="guestList" class="col-sm-8 add-input">
+              <div className="itemStyle">
+                <div className="item">
                 <input
                   type="text"
                   placeholder={`GuestList #${idx + 1} name`}
                   value={guest}
                   onChange={this.handleGuestChange(idx)}
                 />
+                </div>
+                <div>
                 <button
                   type="button"
                   onClick={this.handleRemoveGuest(idx)}
@@ -181,16 +206,20 @@ class Event extends Component {
                   -
                 </button>
               </div>
+              </div>
             ))}
-
+            </div>
+            </div>
+            <div className="container">    
+            <div className="child">
             <button
               type="button"
               onClick={this.handleAddGuest}
               className="small"
-              class="col-sm-2 float-left"
             >
               Add Guest
             </button>
+          </div>
           </div>
 
           <div className="container">

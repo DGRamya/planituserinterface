@@ -1,5 +1,5 @@
 {
-  "name": "userinterface",
+  "name": "planituserinterface",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -34,5 +34,17 @@
   ],
   "devDependencies": {
     "@babel/plugin-transform-object-set-prototype-of-to-assign": "^7.0.0"
-  }
+  },
+  "description": "This is an event planning website.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DGRamya/planituserinterface.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DGRamya/planituserinterface/issues"
+  },
+  "homepage": "https://github.com/DGRamya/planituserinterface#readme"
 }
