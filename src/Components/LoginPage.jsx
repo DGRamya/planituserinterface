@@ -56,20 +56,19 @@ class LoginPage extends Component {
       formData[field] = this.refs[field].value;
     }
 
-    console.log("formData :: ",formData);
+    console.log("formData :: ", formData);
 
     var loginData = {};
     loginData["email"] = formData["useremail"];
     loginData["password"] = formData["userpassword"];
 
     axios
-      .post("http://localhost:8080/login", loginData, {
+      .post("https://easyeventplanning.herokuapp.com/login", loginData, {
         headers: {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
           crossDomain: true
         }
-
       })
       .then(
         function(res) {
@@ -91,8 +90,8 @@ class LoginPage extends Component {
         {!isSubmitted ? (
           <div className="container" style={pageStyle}>
             <form onSubmit={this.handleSubmit} style={formStyle}>
-            <h2>User Login</h2>
-            <br/>
+              <h2>User Login</h2>
+              <br />
               <div className="form-group row">
                 <label className="col-sm-4">Email</label>
                 <div className="col-sm-8 float-sm-left">
@@ -115,7 +114,7 @@ class LoginPage extends Component {
                   />
                 </div>
               </div>
-              <br/>
+              <br />
               <div className="form-group row form-btn">
                 <div className="col-sm-12">
                   <button

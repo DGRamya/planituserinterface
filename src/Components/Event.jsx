@@ -38,13 +38,20 @@ class Event extends Component {
     console.log("printing the event data" + JSON.stringify(eventData));
 
     axios
-      .post("http://localhost:8080/events/myevents/create", eventData, {
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-          crossDomain: true
+      .post(
+        "https://easyeventplanning.herokuapp.com/events/myevents/create",
+        eventData,
+        {
+          params: {
+            userid: "41c4d6a5-709b-4229-a653-4ca6abbb75bc"
+          },
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+            crossDomain: true
+          }
         }
-      })
+      )
       .then(function(res) {
         console.log(res);
         alert("Event Added successful!");
@@ -136,91 +143,88 @@ class Event extends Component {
             </div>
           </div>
 
+          <div className="container">
+            <div className="child">
+              <label>To Do List</label>
+            </div>
+          </div>
+          <div className="container">
+            <div className="nestedContainer">
+              {this.state.todolist.map((todo, idx) => (
+                <div className="itemStyle">
+                  <div className="item">
+                    <input
+                      type="text"
+                      placeholder={`TodoList #${idx + 1} name`}
+                      value={todo}
+                      onChange={this.handleToDoListChange(idx)}
+                    />
+                  </div>
+                  <div>
+                    <button
+                      type="button"
+                      onClick={this.handleRemoveToDoList(idx)}
+                      className="small"
+                    >
+                      -
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="container">
+            <div className="child">
+              <button
+                type="button"
+                onClick={this.handleAddToDoList}
+                className="small"
+              >
+                Add Item
+              </button>
+            </div>
+          </div>
 
           <div className="container">
-             <div className="child">
-             <label >To Do List</label>
-             </div>
-          </div>
-           <div className="container">  
-            <div className="nestedContainer">
-            {this.state.todolist.map((todo, idx) => (
-              <div className="itemStyle">
-                <div className="item">
-                <input
-                  type="text"
-                  placeholder={`TodoList #${idx + 1} name`}
-                  value={todo}
-                  onChange={this.handleToDoListChange(idx)}
-                />
-                </div>
-                <div>
-                <button
-                  type="button"
-                  onClick={this.handleRemoveToDoList(idx)}
-                  className="small"
-                >
-                  -
-                </button>
-              </div>
-              </div> 
-            ))}
-            </div>
-            </div>
-            <div className="container">    
             <div className="child">
-            <button
-              type="button"
-              onClick={this.handleAddToDoList}
-              className="small"
-            >
-              Add Item
-            </button>
+              <label>Guest List</label>
+            </div>
           </div>
-          </div> 
-
-
-
           <div className="container">
-             <div className="child">
-              <label >Guest List</label>
-             </div>
-            </div> 
-            <div className="container">  
             <div className="nestedContainer">
-            {this.state.guestlist.map((guest, idx) => (
-              <div className="itemStyle">
-                <div className="item">
-                <input
-                  type="text"
-                  placeholder={`GuestList #${idx + 1} name`}
-                  value={guest}
-                  onChange={this.handleGuestChange(idx)}
-                />
+              {this.state.guestlist.map((guest, idx) => (
+                <div className="itemStyle">
+                  <div className="item">
+                    <input
+                      type="text"
+                      placeholder={`GuestList #${idx + 1} name`}
+                      value={guest}
+                      onChange={this.handleGuestChange(idx)}
+                    />
+                  </div>
+                  <div>
+                    <button
+                      type="button"
+                      onClick={this.handleRemoveGuest(idx)}
+                      className="small"
+                    >
+                      -
+                    </button>
+                  </div>
                 </div>
-                <div>
-                <button
-                  type="button"
-                  onClick={this.handleRemoveGuest(idx)}
-                  className="small"
-                >
-                  -
-                </button>
-              </div>
-              </div>
-            ))}
+              ))}
             </div>
-            </div>
-            <div className="container">    
-            <div className="child">
-            <button
-              type="button"
-              onClick={this.handleAddGuest}
-              className="small"
-            >
-              Add Guest
-            </button>
           </div>
+          <div className="container">
+            <div className="child">
+              <button
+                type="button"
+                onClick={this.handleAddGuest}
+                className="small"
+              >
+                Add Guest
+              </button>
+            </div>
           </div>
 
           <div className="container">

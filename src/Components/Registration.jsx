@@ -42,7 +42,7 @@ class Registration extends Component {
     bodyFormData["contact"] = registerDetails["mobilenumber"];
 
     axios
-      .post("http://localhost:8080/register", bodyFormData, {
+      .post("https://easyeventplanning.herokuapp.com/register", bodyFormData, {
         headers: {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
@@ -64,7 +64,8 @@ class Registration extends Component {
     return (
       <div className="container" style={pageStyle}>
         <form onSubmit={this.handleSubmit} style={formStyle}>
-        <h2>User Registration</h2><br/>
+          <h2>User Registration</h2>
+          <br />
           <div className="form-group row">
             <label className="col-sm-4">Full Name</label>
             <div className="col-sm-8 float-sm-left">
