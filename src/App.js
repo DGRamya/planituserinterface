@@ -6,12 +6,9 @@ import LoginPage from "./Components/LoginPage";
 import Registration from "./Components/Registration";
 import Welcome from "./Components/Welcome";
 import Event from "./Components/Event";
-<<<<<<< HEAD:userinterface/src/App.js
 import About from "./Components/About";
 import Home from "./Components/Home";
 
-=======
->>>>>>> origin:src/App.js
 import { BrowserRouter, Route } from "react-router-dom";
 
 class App extends Component {

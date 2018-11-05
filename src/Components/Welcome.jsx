@@ -16,13 +16,6 @@ class Welcome extends Component {
             event
           </p>{" "}
           <br />
-          <a href="/login" className="buttonLogin" className="fontStyle">
-            <u>Login</u>
-          </a>
-          &nbsp;&nbsp;&nbsp;&nbsp;
-          <a href="/registration" className="buttonReg" className="fontStyle">
-            <u>Registration</u>
-          </a>
         </div>
       </div>
     );

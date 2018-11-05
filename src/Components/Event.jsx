@@ -4,6 +4,10 @@ import axios from "axios";
 import 'react-day-picker/lib/style.css';
 import './Event.css';
 
+const formStyle = {
+  paddingLeft: "300px",
+  paddingTop: "20px"
+};
 
 class Event extends Component {
 
@@ -31,7 +35,7 @@ class Event extends Component {
       console.log(field);
       eventDetails[field] = this.refs[field].value;
     }
-    
+
     var eventData = {};
 
     eventData["eventname"] = eventDetails["eventname"];
@@ -78,7 +82,7 @@ class Event extends Component {
       if (idToDo !== sidToDo) return todoitem;
       return { ...todoitem, todoname: evt.target.value };
     });
-    
+
     this.setState({ todolist: newToDo });
   }
 
@@ -96,7 +100,7 @@ class Event extends Component {
       if (guestId !== sguestId) return guest;
       return { ...guest, guestemail: evt.target.value };
     });
-    
+
     this.setState({ guestlist: newGuest });
   }
 
@@ -107,21 +111,22 @@ class Event extends Component {
       <div style={{ backgroundColor: "white" }}>
 
          <div className="headerContainer">
-              <div className="header">
+              <div className="header" style={{paddingLeft: "30%"}}>
                 <label> Create Events </label>
               </div>
          </div>
 
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} style={formStyle}>
 
           <div className="container">
               <div className="child">
               <label>Event Name</label>
               </div>
               <div className="child">
-              <input  
+              <input
                 type="text"
                 required
+                className="form-control"
                 ref="eventname"
               />
               </div>
@@ -135,6 +140,7 @@ class Event extends Component {
             <input
               type="text"
               required
+              className="form-control"
               ref="eventvenue"
             />
             </div>
@@ -145,16 +151,16 @@ class Event extends Component {
             <label>Date</label>
             </div>
             <div className="child">
-            <DayPickerInput onDayChange={this.handleDateChange} />
+            <DayPickerInput className="form-control" onDayChange={this.handleDateChange} className="form-control"/>
             </div>
-          </div> 
+          </div>
 
           <div className="container">
               <div className="child">
               <label>To Do List</label>
               </div>
-          </div>  
-          <div className="container">  
+          </div>
+          <div className="container">
               <div className="nestedContainer">
               {this.state.todolist.map((todoitem, idToDo) => (
                     <div className="itemStyle">
@@ -164,17 +170,18 @@ class Event extends Component {
                       ref="todoitem"
                       placeholder={`todoitem #${idToDo + 1} todoname`}
                       value={todoitem.todoname}
+                      className="form-control"
                       onChange={this.handleToDoChange(idToDo)}
                     />
                     </div>
                     <div>
                     <button type="button" className="small" onClick={this.handleRemovetodoitem(idToDo)}>-</button>
                     </div>
-                    </div>   
+                    </div>
               ))}
               </div>
             </div>
-          <div className="container">    
+          <div className="container">
               <div className="child">
               <button type="button" className="small" onClick={this.handleAddtodoitem}>Add ToDo</button>
               </div>
@@ -193,6 +200,7 @@ class Event extends Component {
                     <input
                       type="text"
                       ref="guest"
+                      className="form-control"
                       placeholder={`guest #${guestId + 1} guestemail`}
                       value={guest.guestemail}
                       onChange={this.handleGuestChange(guestId)}
@@ -201,15 +209,15 @@ class Event extends Component {
                   </div>
               ))}
               </div>
-          </div>  
+          </div>
 
-          <div className="container">    
+          <div className="container">
               <div className="child">
                 <button type="button" className="small" onClick={this.handleAddguest}>Add Guest</button>
               </div>
           </div>
 
-          <div className="container">    
+          <div className="container">
               <div className="submitButton">
               <button>Submit</button>
               </div>
