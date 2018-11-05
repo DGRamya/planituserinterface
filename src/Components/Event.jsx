@@ -1,23 +1,19 @@
-import React, { Component } from 'react';
-import DayPickerInput from 'react-day-picker/DayPickerInput';
+import React, { Component } from "react";
+import DayPickerInput from "react-day-picker/DayPickerInput";
 import axios from "axios";
-import 'react-day-picker/lib/style.css';
-import './Event.css';
-
+import "react-day-picker/lib/style.css";
+import "./Event.css";
 
 class Event extends Component {
-
   constructor(props) {
     super(props);
 
     this.state = {
       eventname: "",
       eventvenue: "",
-      eventDate: '',
-      todoname: '',
-      todolist: [{ todoname: '' }],
-      guestemail: '',
-      guestlist: [{ guestemail: '' }],
+      eventDate: "",
+      todolist: [""],
+      guestlist: [""]
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -31,7 +27,7 @@ class Event extends Component {
       console.log(field);
       eventDetails[field] = this.refs[field].value;
     }
-    
+
     var eventData = {};
 
     eventData["eventname"] = eventDetails["eventname"];
@@ -39,8 +35,10 @@ class Event extends Component {
     eventData["todolist"] = this.state.todolist;
     eventData["guestlist"] = this.state.guestlist;
 
+    console.log("printing the event data" + JSON.stringify(eventData));
+
     axios
-      .post("http://localhost:8080/event", eventData, {
+      .post("http://localhost:8080/events/myevents/create", eventData, {
         headers: {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
@@ -56,7 +54,6 @@ class Event extends Component {
         console.log(err);
       });
     event.target.reset();
-
   };
 
   handleDateChange(date) {
@@ -65,156 +62,142 @@ class Event extends Component {
     });
   }
 
-  handleRemovetodoitem = (idToDo) => () => {
-    this.setState({ todolist: this.state.todolist.filter((s, sidToDo) => idToDo !== sidToDo) });
-  }
+  handleToDoListChange = idx => evt => {
+    const newList = this.state.todolist;
+    newList[idx] = evt.target.value;
+    this.setState({ todolist: newList });
+  };
 
-  handleAddtodoitem = () => {
-    this.setState({ todolist: this.state.todolist.concat([{ todoname: '' }]) });
-  }
-
-  handleToDoChange = (idToDo) => (evt) => {
-    const newToDo = this.state.todolist.map((todoitem, sidToDo) => {
-      if (idToDo !== sidToDo) return todoitem;
-      return { ...todoitem, todoname: evt.target.value };
+  handleAddToDoList = () => {
+    this.setState({
+      todolist: this.state.todolist.concat([""])
     });
-    
-    this.setState({ todolist: newToDo });
-  }
+  };
 
-
- handleRemoveguest = (guestId) => () => {
-    this.setState({ guestlist: this.state.guestlist.filter((s, sguestId) => guestId !== sguestId) });
-  }
-
-  handleAddguest = () => {
-    this.setState({ guestlist: this.state.guestlist.concat([{ guestemail: '' }]) });
-  }
-
-  handleGuestChange = (guestId) => (evt) => {
-    const newGuest = this.state.guestlist.map((guest, sguestId) => {
-      if (guestId !== sguestId) return guest;
-      return { ...guest, guestemail: evt.target.value };
+  handleRemoveToDoList = idx => () => {
+    this.setState({
+      todolist: this.state.todolist.filter((s, sidx) => idx !== sidx)
     });
-    
-    this.setState({ guestlist: newGuest });
-  }
+  };
 
+  handleGuestChange = idx => evt => {
+    const newList = this.state.guestlist;
+    newList[idx] = evt.target.value;
+    this.setState({ guestlist: newList });
+  };
+
+  handleAddGuest = () => {
+    this.setState({
+      guestlist: this.state.guestlist.concat([""])
+    });
+  };
+
+  handleRemoveGuest = idx => () => {
+    this.setState({
+      guestlist: this.state.guestlist.filter((s, sidx) => idx !== sidx)
+    });
+  };
 
   render() {
     const { selectedDay } = this.state;
     return (
       <div style={{ backgroundColor: "white" }}>
-
-         <div className="headerContainer">
-              <div className="header">
-                <label> Create Events </label>
-              </div>
-         </div>
+        <div className="headerContainer">
+          <div className="header">
+            <label> Create Events </label>
+          </div>
+        </div>
 
         <form onSubmit={this.handleSubmit}>
-
           <div className="container">
-              <div className="child">
+            <div className="child">
               <label>Event Name</label>
-              </div>
-              <div className="child">
-              <input  
-                type="text"
-                required
-                ref="eventname"
-              />
-              </div>
-          </div>
-
-          <div className="container">
-            <div className="child">
-            <label>Event Venue</label>
             </div>
             <div className="child">
-            <input
-              type="text"
-              required
-              ref="eventvenue"
-            />
+              <input type="text" required ref="eventname" />
             </div>
           </div>
 
           <div className="container">
             <div className="child">
-            <label>Date</label>
+              <label>Event Venue</label>
             </div>
             <div className="child">
-            <DayPickerInput onDayChange={this.handleDateChange} />
+              <input type="text" required ref="eventvenue" />
             </div>
-          </div> 
+          </div>
 
           <div className="container">
-              <div className="child">
-              <label>To Do List</label>
-              </div>
-          </div>  
-          <div className="container">  
-              <div className="nestedContainer">
-              {this.state.todolist.map((todoitem, idToDo) => (
-                    <div className="itemStyle">
-                    <div className="item">
-                    <input
-                      type="text"
-                      ref="todoitem"
-                      placeholder={`todoitem #${idToDo + 1} todoname`}
-                      value={todoitem.todoname}
-                      onChange={this.handleToDoChange(idToDo)}
-                    />
-                    </div>
-                    <div>
-                    <button type="button" className="small" onClick={this.handleRemovetodoitem(idToDo)}>-</button>
-                    </div>
-                    </div>   
-              ))}
-              </div>
+            <div className="child">
+              <label>Date</label>
             </div>
-          <div className="container">    
-              <div className="child">
-              <button type="button" className="small" onClick={this.handleAddtodoitem}>Add ToDo</button>
-              </div>
+            <div className="child">
+              <DayPickerInput onDayChange={this.handleDateChange} />
+            </div>
           </div>
 
+          <div class="form-group row">
+            {this.state.todolist.map((todo, idx) => (
+              <div className="todoList" class="col-sm-8 add-input">
+                <input
+                  type="text"
+                  placeholder={`TodoList #${idx + 1} name`}
+                  value={todo}
+                  onChange={this.handleToDoListChange(idx)}
+                />
+                <button
+                  type="button"
+                  onClick={this.handleRemoveToDoList(idx)}
+                  className="small"
+                >
+                  -
+                </button>
+              </div>
+            ))}
+
+            <button
+              type="button"
+              onClick={this.handleAddToDoList}
+              className="small"
+              class="col-sm-2 float-left"
+            >
+              Add Item
+            </button>
+          </div>
+          <div class="form-group row">
+            {this.state.guestlist.map((guest, idx) => (
+              <div className="guestList" class="col-sm-8 add-input">
+                <input
+                  type="text"
+                  placeholder={`GuestList #${idx + 1} name`}
+                  value={guest}
+                  onChange={this.handleGuestChange(idx)}
+                />
+                <button
+                  type="button"
+                  onClick={this.handleRemoveGuest(idx)}
+                  className="small"
+                >
+                  -
+                </button>
+              </div>
+            ))}
+
+            <button
+              type="button"
+              onClick={this.handleAddGuest}
+              className="small"
+              class="col-sm-2 float-left"
+            >
+              Add Guest
+            </button>
+          </div>
 
           <div className="container">
-              <div className="child">
-              <label>Guest List</label>
-              </div>
-          </div>
-          <div className="container">
-              <div className="nestedContainer">
-              {this.state.guestlist.map((guest, guestId) => (
-                  <div className="itemStyle">
-                    <input
-                      type="text"
-                      ref="guest"
-                      placeholder={`guest #${guestId + 1} guestemail`}
-                      value={guest.guestemail}
-                      onChange={this.handleGuestChange(guestId)}
-                    />
-                    <button type="button" className="small" onClick={this.handleRemoveguest(guestId)}>-</button>
-                  </div>
-              ))}
-              </div>
-          </div>  
-
-          <div className="container">    
-              <div className="child">
-                <button type="button" className="small" onClick={this.handleAddguest}>Add Guest</button>
-              </div>
-          </div>
-
-          <div className="container">    
-              <div className="submitButton">
+            <div className="submitButton">
               <button>Submit</button>
-              </div>
+            </div>
           </div>
-
         </form>
       </div>
     );
