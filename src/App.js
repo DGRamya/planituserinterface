@@ -8,7 +8,7 @@ import Welcome from "./Components/Welcome";
 import Event from "./Components/Event";
 import About from "./Components/About";
 import Home from "./Components/Home";
-
+import ListEvents from "./Components/ListEvents";
 import { BrowserRouter, Route } from "react-router-dom";
 
 class App extends Component {
@@ -66,7 +66,15 @@ class App extends Component {
               </div>
             )}
           />
-        </div>
+          <Route
+            path="/listevents"
+            render={() => (
+              <div className="App">
+                <ListEvents />
+              </div>
+            )}
+          />
+          </div>
       </BrowserRouter>
     );
   }

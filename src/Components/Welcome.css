@@ -1,12 +1,12 @@
 .bgStyle{
-  height: 100%;
+  max-height: 100%;
   width: 100%;
   position: absolute;
 }
 
 .divStyle{
-  padding-top: 40px;
-  height: 100%;
+  padding-top: 5%;
+  max-height: 100%;
   width: 100%;
   background-color: #F17070;
   display: inline-block;
@@ -17,10 +17,10 @@
   align-self: left;
 }
 
-.fontStyle{    
+.fontStyle{
   font-family: Comic Sans MS;
   color: white;
   font-weight: bold;
   font-style: oblique;
-  font-size: 30px;
+  font-size: 3rem;
 }

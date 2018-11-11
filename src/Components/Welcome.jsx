@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import logo from "../images/logo.png";
 import './Welcome.css';
-
+import Jumbotron from "./Jumbotron";
+import planit from "../images/planit.png";
 class Welcome extends Component {
   render() {
     return (
@@ -10,12 +11,13 @@ class Welcome extends Component {
           <img src={logo} className="imgStyle" />
         </div>
         <div className="divStyle">
-          <p className="fontStyle">
-            {" "}
-            Welcome, <br /> Please register or login to start planning your
-            event
-          </p>{" "}
-          <br />
+        <Jumbotron mainText="Plan your event!"
+        displayState="false" buttonLink="./login" image = {require("../images/planit.png")}/>
+        <Jumbotron mainText="Invite Guests!"
+        displayState="false" buttonLink="./login" image = {require("../images/invite.jpg")}/>
+        <Jumbotron mainText="Maintain to-do list!"
+        displayState="false" buttonLink="./login" image = {require("../images/to-do.png")}/>
+
         </div>
       </div>
     );

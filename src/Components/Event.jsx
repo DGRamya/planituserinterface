@@ -109,12 +109,6 @@ class Event extends Component {
     const { selectedDay } = this.state;
     return (
       <div style={{ backgroundColor: "white" }}>
-        <div className="headerContainer">
-          <div className="header">
-            <label> Create Events </label>
-          </div>
-        </div>
-
         <form onSubmit={this.handleSubmit}>
           <div className="container">
             <div className="child">
